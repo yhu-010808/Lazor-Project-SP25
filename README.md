@@ -3,9 +3,17 @@ Solver for the Lazor game as part of EN.540.635 course project
 
 Let's begin the project 
 
-# 1. Introduction (Yinan)
-概括lazor project是干什么的
-# 2. Methodology (Maxine)
+# 1. Introduction
+This project aims to solve the "Lazors" puzzle game by automatically placing blocks to direct lasers to specified targets. It reads board configurations from .bff files, supports reflect, opaque, and refract blocks, and outputs solutions.
+
+Key requirements:
+
+* Parse .bff files and validate inputs.
+* Model block interactions using classes.
+* Solve boards within 2 minutes.
+* Output clear solutions.
+
+# 2. Methodology 
   ## 2.1 Overview
 The aim of Lazors game follows a modular and object-oriented approach. Below is a breakdown of the methodology we used:
   ## 2.2 Input Parsing
@@ -110,12 +118,36 @@ High-level wrapper that performs the full process:
 3. Builds the meshgrid
 
 ## 3.3 Block
+
+
 ## 3.4 Laser
+
+
 ## 3.5 Solution Output
+
+The `generate_solution_output.py` provides functions to display and save Lazor game grid solutions in a readable format.
+
+### Main Functions
+
+#### `print_grid(grid: List[List[str]]) -> None`
+
+Prints the game grid to the console in a formatted layout.
+
+- **Parameters**:
+  - `grid`: A 2D list of strings representing the Lazor game board.
+
+#### `save_solution_to_file(grid: List[List[str]], filename: str = "output.txt") -> None`
+
+Saves the formatted grid to a text file for documentation or analysis.
+
+- **Parameters**:
+  - `grid`: A 2D list of strings representing the Lazor game board.
+  - `filename`: Name of the output file (default: `"output.txt"`)
+
 ## 3.6 Solution
 
-# 4. Project Files (Yinan)
-介绍一下bff
+# 4. Project Files
+
 # 5. Contributions
 Maxine Wang:
 Yinan Hu:
