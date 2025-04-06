@@ -39,16 +39,33 @@ Different Python classes are used to appropriately represent core game component
 * Block: Represents basic classification for all block types, with subclasses ReflectBlock, OpaqueBlock, and RefractBlock.
 * Lazor: Represents the position and direction of a lazor beam.
 
+  ##### 4. Laser Simulation
+A laser trajectory simulator is implemented to decide what to do next based on the interaction of the laser with different 
+blocks:
+* Reflection at a 90° angle after meeting reflect block (A)
+* Absorption (stop) after meeting opaque block (B): 
+* Refraction (split into two paths) after meeting refract block (C)
+* Termination of the path if the laser goes out of bounds
 
+All laser paths will be fully simulated and recorded.
 
-  ##### 4. Output
+  ##### 5. Solving Algorism
+The solver applies a randomized iterative algorithm to place the movable blocks (A: Reflective, B: Absorbing, C: Refractive) on the board to direct laser beams toward all required target points. In each iteration: The algorithm randomly selects positions on the board marked with o as possible block locations. It prioritizes placing refractive blocks (C) first, then reflective blocks (A), and finally absorbing blocks (B). This strategy increases the probability of successfully completing the laser path, as refractive blocks allow both transmission and reflection, effectively splitting the beam into two paths and expanding coverage.
+
+The laser's path is simulated step-by-step, updating position and direction based on the block it encounters. A valid solution is defined as a configuration in which all target points are hit by at least one laser beam.
+
+A maximum number of iterations is specified to prevent the algorithm from running indefinitely in cases where a solution is difficult to find or does not exist.
+
+Note: Due to the random nature of the algorithm, multiple valid solutions may exist for the same input. However, the solver returns only the first valid solution it finds.
+
+  ##### 6. Output
 The only criterion for the program to achieve its goal is to make the laser hit all the target points, not the specific placement of the blocks. So in theory, the program can get different solutions through different arrangements and combinations of different blocks. However, it is assumed that the program will exit the loop after finding a solution and output the results to the .bff file in a grid format, clearly shows the final board with all the blocks and their positions.
   
 ### 3. Code Logic (Algorism)
 先不写
-### 4. Example Result Output (Maxine)
-hypothesis在得到一个解以后会停止，就得到速度最快的那个解；这个代码可以完成8个bff关卡，并分别输出最快得到的解
 
-### 5. Project Files (Yinan)
+### 4. Project Files (Yinan)
 介绍一下bff
-### 6. Contributions
+### 5. Contributions
+Maxine Wang:
+Yinan Hu:
