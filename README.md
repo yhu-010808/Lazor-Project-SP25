@@ -5,8 +5,37 @@ Let's begin the project
 
 ### 1. Introduction (Yinan)
 概括lazor project是干什么的
-### 2. Method (Maxine)
-介绍各个字母代表什么
+### 2. Methodology (Maxine)
+  ##### 1. Overview
+The aim of Lazors game follows a modular and object-oriented approach. Below is a breakdown of the methodology we used:
+  ##### 2. Input Parsing
+The input files are eight .bff files, representing different levels. The files contain following components:
+
+The overall layout of the board grid (from GRID START to GRID STOP)
+
+Types and number of blocks
+* x = no block allowed for placing blocks
+* o = blockes allowd for placing blocks
+* A = fixed reflect block
+* B = fixed opaque block
+* C = fixed refract block
+
+Laser origin points 
+
+Laser directions
+  __________\ +x
+ |          /
+ |<br/>
+ |<br/>
+\|/ +y
+
+Target points to be hit by lasers (lazer intersect points)
+
+The .bff file is parsed into internal data structures that represent the board, lasers, and block availability.
+  ##### 3. Class Objects
+
+
+  
 ### 3. Code Logic (Algorism)
 先不写
 ### 4. Example Result Output (Maxine)
