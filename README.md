@@ -31,9 +31,11 @@ b. Types and number of blocks
 c. Laser origin points 
 
 d. Laser directions
-+x
-↓ +y
-
+  __________\ +x<br/>
+ |          
+ |<br/>
+ |<br/>
+\|/ +y<br/>
 e. Target points to be hit by lasers (lazer intersect points)
 
 The .bff file is parsed into internal data structures that represent the board, lasers, and block availability.
