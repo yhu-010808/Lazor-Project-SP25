@@ -62,7 +62,32 @@ Note: Due to the random nature of the algorithm, multiple valid solutions may ex
 The only criterion for the program to achieve its goal is to make the laser hit all the target points, not the specific placement of the blocks. So in theory, the program can get different solutions through different arrangements and combinations of different blocks. However, it is assumed that the program will exit the loop after finding a solution and output the results to the .bff file in a grid format, clearly shows the final board with all the blocks and their positions.
   
 ### 3. Code Logic (Algorism)
-先不写
+# Game
+
+This puzzle game is based on block placement and laser beam simulation. Players are given a fixed grid, a laser source, and a set of blocks that can reflect or redirect the beam. The goal is to determine a valid placement of blocks such that the laser hits all target points.
+
+## How It Works
+
+- A coarse grid represents valid block positions (`'o'`).
+- A set of blocks (types A, B, C) is available to be placed.
+- After placement, a laser is fired and travels based on the properties of blocks in its path.
+- The laser path is traced on a fine meshgrid that helps detect intersections with targets.
+
+## Block Types
+
+| Block Type | Behavior                      |
+|------------|-------------------------------|
+| A          | Reflects laser 90°            |
+| B          | Transmits and reflects part   |
+| C          | Fully transmits and redirects |
+
+## Project Structure
+
+- `board.py`: Logic for generating playable boards and meshgrid
+- `lazor_solver.py`: Simulates laser behavior
+- `main.py`: Game entry point
+- `resources/`: Game maps and block settings
+
 
 ### 4. Project Files (Yinan)
 介绍一下bff
