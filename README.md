@@ -11,30 +11,38 @@ The aim of Lazors game follows a modular and object-oriented approach. Below is 
   ##### 2. Input Parsing
 The input files are eight .bff files, representing different levels. The files contain following components:
 
-The overall layout of the board grid (from GRID START to GRID STOP)
+a. The overall layout of the board grid (from GRID START to GRID STOP)
 
-Types and number of blocks
+b. Types and number of blocks
 * x = no block allowed for placing blocks
 * o = blockes allowd for placing blocks
 * A = fixed reflect block
 * B = fixed opaque block
 * C = fixed refract block
 
-Laser origin points 
+c. Laser origin points 
 
-Laser directions
+d. Laser directions
   __________\ +x
  |          /
- |<br/>
- |<br/>
+ |
+ |
 \|/ +y
 
-Target points to be hit by lasers (lazer intersect points)
+e. Target points to be hit by lasers (lazer intersect points)
 
 The .bff file is parsed into internal data structures that represent the board, lasers, and block availability.
+  
   ##### 3. Class Objects
+Different Python classes are used to appropriately represent core game components:
+* Board: Holds the grid structure and handles block placement and laser simulation.
+* Block: Represents basic classification for all block types, with subclasses ReflectBlock, OpaqueBlock, and RefractBlock.
+* Lazor: Represents the position and direction of a lazor beam.
 
 
+
+  ##### 4. Output
+The only criterion for the program to achieve its goal is to make the laser hit all the target points, not the specific placement of the blocks. So in theory, the program can get different solutions through different arrangements and combinations of different blocks. However, it is assumed that the program will exit the loop after finding a solution and output the results to the .bff file in a grid format, clearly shows the final board with all the blocks and their positions.
   
 ### 3. Code Logic (Algorism)
 先不写
