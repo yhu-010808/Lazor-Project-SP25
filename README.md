@@ -31,11 +31,8 @@ b. Types and number of blocks
 c. Laser origin points 
 
 d. Laser directions
-  __________\ +x
- |          /
- |
- |
-\|/ +y
++x
+↓ +y
 
 e. Target points to be hit by lasers (lazer intersect points)
 
