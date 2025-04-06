@@ -31,7 +31,7 @@ b. Types and number of blocks
 c. Laser origin points 
 
 d. Laser directions
-  __________\ +x<br/>
+  __ __ __ __\ +x<br/>
  |          
  |<br/>
  |<br/>
