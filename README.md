@@ -1,8 +1,6 @@
 # Lazor-Project-SP25
 Solver for the Lazor game as part of EN.540.635 course project
 
-Let's begin the project 
-
 # 1. Introduction
 This project aims to solve the "Lazors" puzzle game by automatically placing blocks to direct lasers to specified targets. It reads board configurations from .bff files, supports reflect, opaque, and refract blocks, and outputs solutions.
 
@@ -70,7 +68,7 @@ Note: Due to the random nature of the algorithm, multiple valid solutions may ex
   ## 2.6 Output
 The only criterion for the program to achieve its goal is to make the laser hit all the target points, not the specific placement of the blocks. So in theory, the program can get different solutions through different arrangements and combinations of different blocks. However, it is assumed that the program will exit the loop after finding a solution and output the results to the .bff file in a grid format, clearly shows the final board with all the blocks and their positions.
   
-# 3. Code Logic (Algorism)
+# 3. Code Logic
 ## 3.1 Game
 
 This puzzle game is based on block placement and laser beam simulation. Players are given a fixed grid, a laser source, and a set of blocks that can reflect or redirect the beam. The goal is to determine a valid placement of blocks such that the laser hits all target points.
@@ -124,28 +122,67 @@ High-level wrapper that performs the full process:
 ## 3.4 Laser
 
 
-## 3.5 Solution Output
+## 3.5 Outputter
 
-The `generate_solution_output.py` provides functions to display and save Lazor game grid solutions in a readable format.
+### Outputter Function
 
-### Main Functions
+The `outputter()` function is responsible for converting the laser puzzle solution (stored as a fine meshgrid) into a clean and readable output format. It saves the result to a `.bff` file that shows the final layout of the game board with blocks.
 
-#### `print_grid(grid: List[List[str]]) -> None`
+#### Purpose
 
-Prints the game grid to the console in a formatted layout.
+- Extracts the actual block positions from the fine-resolution meshgrid.
+- Converts the 2D mesh into a standard board format by ignoring laser path nodes.
+- Outputs the result as a human-readable file (`solution.bff`).
 
-#### `save_solution_to_file(grid: List[List[str]], filename: str = "output.txt") -> None`
+#### Parameters
 
-Saves the formatted grid to a text file for documentation or analysis.
+- `mesh` (list[list[str]]): A 2D meshgrid representing the board and laser path, generated from the game's block layout.
 
-## 3.6 Solution
-The `generate_solution.py` implements a random trial-based algorithm to find a valid solution to a Lazor puzzle.
+#### Output
 
-### Main Functions
+- `solution.bff` (file): A formatted `.bff` file showing the final solution grid using characters like `'A'`, `'B'`, `'C'`, `'x'`, `'o'`.
 
-#### `generate_solution(grid, origin, path, pointers, blocks, max_attempts=10000, verbose=True)`
+#### Algorithm Steps
 
-Attempts to generate a valid solution grid by randomly placing blocks and simulating Lazor trajectories.
+1. Traverse through the meshgrid, picking only block coordinates (odd rows and columns).
+2. Store characters representing the placed blocks into a 2D list.
+3. Write this list to a file in tab-separated format.
+4. Display success messages to the user.
+
+
+## 3.6 Solution Generator
+
+### Solution Generator
+
+The `solution_generator()` function is the main engine that drives the entire laser puzzle solver. It iteratively generates possible solutions and verifies whether each candidate satisfies the constraints of the puzzle.
+
+#### Purpose
+
+To find a valid arrangement of blocks that allows lasers to reach all target points. The function randomly places blocks in allowed positions, simulates laser paths, and checks if all required points are intercepted.
+
+#### Parameters
+
+- `game_file` *(str)*: The path to the `.bff` input file containing the puzzle setup.
+- `max_iter` *(int)*: The maximum number of iterations to attempt before stopping. The program will exit early if a valid solution is found.
+
+#### Output
+
+- If a valid solution is found, it writes a file named `solution.bff` using the `outputter()` function.
+
+#### Algorithm Steps
+
+1. The function runs a loop for a maximum of max_iter times.
+2. For each iteration (up to `max_iter`):
+   - Load the game configuration.
+   - Initialize the board and determine valid positions for blocks.
+   - Randomly place available blocks on the board.
+   - Simulate the laser trajectory using the current block layout.
+   - If all required points are intersected by laser paths:
+     - Output the solution to `solution.bff`.
+     - Exit the loop.
+
+This function uses randomized search, so solutions may vary between runs unless a fixed seed is applied.
+
 
 # 4. Project Files
 ## 4.1 .bff Files (Board File Format)
@@ -170,7 +207,7 @@ Attempts to generate a valid solution grid by randomly placing blocks and simula
 
 ### Core Program Files
 - **File Extension**: `.py`
-- **Example**: `output/level1_solution.py`
+- **Example**: `Lazor_Final.py`
 
 # 5. Contributions
 Maxine Wang:
