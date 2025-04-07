@@ -46,7 +46,7 @@ Different Python classes are used to appropriately represent core game component
 * Block: Represents basic classification for all block types, with subclasses ReflectBlock, OpaqueBlock, and RefractBlock.
 * Lazor: Represents the position and direction of a lazor beam.
 
-  ## 2.4 Laser Simulation
+## 2.4 Laser Simulation
 A laser trajectory simulator is implemented to decide what to do next based on the interaction of the laser with different 
 blocks:
 * Reflection at a 90° angle after meeting reflect block (A)
