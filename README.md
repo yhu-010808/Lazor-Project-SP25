@@ -124,6 +124,24 @@ At a specific position in the meshgrid, does the laser encounter something that 
 
 
 ## 3.4 Laser
+The LaserBeam class is the core simulation engine in this project, responsible for modeling how lasers propagate through the board and interact with different block types — reflective (A), opaque (B), and refractive (C).
+At each step, the laser checks surrounding cells. When it encounters:
+*	a reflective block (A), it reflects based on the incident side;
+*	an opaque block (B), it stops;
+*	a refractive block (C), it splits into two beams — one continues and one reflects.
+The class tracks all the paths and intersection points, determining whether the laser hits all required targets. The logic is modularized using helper methods for each block behavior and a boundary checker to ensure a valid simulation.
+Key Method：
+1.	__init__：Initializes the laser's starting points and directions.
+2.	is_valid_position： Static method to check if a coordinate is within the board boundary.
+3.	laser_strikes： Core method for handling laser interactions with blocks.
+*	Detects nearby blocks;
+*	Determines new directions based on block types (A/B/C);
+*	Manages reflection and beam splitting.
+4.	trajectory: Computes the complete path of each laser.
+*	Starts from each origin;
+*	Iteratively updates directions and intersections;
+*	Aggregates all positions for validation.
+
 
 
 ## 3.5 Outputter
