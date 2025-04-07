@@ -218,6 +218,10 @@ This function uses randomized search, so solutions may vary between runs unless 
 
 
 # 4. Project Files
+
+This project uses a series of .bff (Block File Format) files to define the game levels and stores the solution in a .bff file as well. We provide 8 input files, each representing a different Lazor puzzle: dark_1.bff, mad_1.bff, mad_4.bff, mad_7.bff, numbered_6.bff, showstopper_4.bff, tiny_5.bff, yarn_5.bff. Upon successfully solving a puzzle, the solution is written to: solution.bff: This file contains the final layout of the puzzle grid, with all movable blocks correctly placed to allow the laser(s) to hit all the required target points.!
+
+
 ## 4.1 .bff Files (Board File Format)
 
 ### Input Files
@@ -241,6 +245,7 @@ This function uses randomized search, so solutions may vary between runs unless 
 ### Core Program Files
 - **File Extension**: `.py`
 - **Example**: `Lazor_Final.py`
+
 
 # 5. Contributions
 Maxine Wang:
