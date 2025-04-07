@@ -117,6 +117,10 @@ High-level wrapper that performs the full process:
 3. Builds the meshgrid
 
 ## 3.3 Block
+The Block section of the code is designed to handle the properties of different types of blocks in the laser maze. Each block has two fundamental attributes: reflect and transmit. The types of blocks include reflective blocks (A), opaque blocks (B), refractive blocks (C), and empty spaces (o). The main function of the Block module is to determine whether a block (or an empty space) at a given position can reflect or transmit a laser beam.
+Ultimately, this module answers a key question:
+At a specific position in the meshgrid, does the laser encounter something that is reflective or transparent? The output is a pair of Boolean values: reflect and transmit.
+
 
 
 ## 3.4 Laser
