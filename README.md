@@ -59,9 +59,7 @@ All laser paths will be fully simulated and recorded.
   ## 2.5 Solving Algorism
 The solver applies a randomized iterative algorithm to place the movable blocks (A: Reflective, B: Absorbing, C: Refractive) on the board to direct laser beams toward all required target points. In each iteration: The algorithm randomly selects positions on the board marked with o as possible block locations. It prioritizes placing refractive blocks (C) first, then reflective blocks (A), and finally absorbing blocks (B). This strategy increases the probability of successfully completing the laser path, as refractive blocks allow both transmission and reflection, effectively splitting the beam into two paths and expanding coverage.
 
-The laser's path is simulated step-by-step, updating position and direction based on the block it encounters. A valid solution is defined as a configuration in which all target points are hit by at least one laser beam.
-
-A maximum number of iterations is specified to prevent the algorithm from running indefinitely in cases where a solution is difficult to find or does not exist.
+The laser's path is simulated step-by-step, updating position and direction based on the block it encounters. A valid solution is defined as a configuration in which all target points are hit by at least one laser beam. A maximum number of iterations is specified to prevent the algorithm from running indefinitely in cases where a solution is difficult to find or does not exist.
 
 Note: Due to the random nature of the algorithm, multiple valid solutions may exist for the same input. However, the solver returns only the first valid solution it finds.
 
@@ -211,15 +209,15 @@ To find a valid arrangement of blocks that allows lasers to reach all target poi
    - Randomly place available blocks on the board.
    - Simulate the laser trajectory using the current block layout.
    - If all required points are intersected by laser paths:
-     - Output the solution to `solution.bff`.
-     - Exit the loop.
+     * Output the solution to `solution.bff`.
+     * Exit the loop.
 
 This function uses randomized search, so solutions may vary between runs unless a fixed seed is applied.
 
 
 # 4. Project Files
 
-This project uses a series of .bff (Block File Format) files to define the game levels and stores the solution in a .bff file as well. We provide 8 input files, each representing a different Lazor puzzle: dark_1.bff, mad_1.bff, mad_4.bff, mad_7.bff, numbered_6.bff, showstopper_4.bff, tiny_5.bff, yarn_5.bff. Upon successfully solving a puzzle, the solution is written to: solution.bff: This file contains the final layout of the puzzle grid, with all movable blocks correctly placed to allow the laser(s) to hit all the required target points.!
+This project uses a series of .bff (Block File Format) files to define the game levels and stores the solution in a .bff file as well. We provide 8 input files, each representing a different Lazor puzzle: dark_1.bff, mad_1.bff, mad_4.bff, mad_7.bff, numbered_6.bff, showstopper_4.bff, tiny_5.bff, yarn_5.bff. Upon successfully solving a puzzle, the solution is written to: solution.bff: This file contains the final layout of the puzzle grid, with all movable blocks correctly placed to allow the laser(s) to hit all the required target points.
 
 
 ## 4.1 .bff Files (Board File Format)
@@ -247,7 +245,7 @@ This project uses a series of .bff (Block File Format) files to define the game 
 - **Example**: `Lazor_Final.py`
 
 
-# 5. Contributions
-Maxine Wang:
+# 5. Authors
+Maxine Wang: https://github.com/Maxine-wang-7
 
-Yinan Hu:
+Yinan Hu: https://github.com/yhu-010808
