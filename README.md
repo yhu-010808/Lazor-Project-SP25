@@ -31,11 +31,13 @@ b. Types and number of blocks
 c. Laser origin points 
 
 d. Laser directions
+
   __ __ __ __\ +x<br/>
  |          
  |<br/>
  |<br/>
 \|/ +y<br/>
+
 e. Target points to be hit by lasers (lazer intersect points)
 
 The .bff file is parsed into internal data structures that represent the board, lasers, and block availability.
@@ -144,8 +146,38 @@ Saves the formatted grid to a text file for documentation or analysis.
   - `filename`: Name of the output file (default: `"output.txt"`)
 
 ## 3.6 Solution
+The `generate_solution.py` implements a random trial-based algorithm to find a valid solution to a Lazor puzzle.
+
+### Main Functions
+
+#### `generate_solution(grid, origin, path, pointers, blocks, max_attempts=10000, verbose=True)`
+
+Attempts to generate a valid solution grid by randomly placing blocks and simulating Lazor trajectories.
 
 # 4. Project Files
+## 4.1 .bff Files (Board File Format)
+
+### Input Files
+- **File Extension**: `.bff`
+- **Purpose**: Define puzzle configurations
+- **Contains**:
+  - Grid layout with allowed/fixed block positions
+  - Laser starting positions and directions
+  - Target points that must be intersected
+- **Example**: `mad_1.bff`
+
+### Output Files
+- **File Extension**: `.bff` (or other formats like `.txt`)
+- **Purpose**: Store solved configurations
+- **Contains**:
+  - Final block placements
+- **Example**: `solution.bff`
+
+## 4.2 .py Files (Source Code)
+
+### Core Program Files
+- **File Extension**: `.py`
+- **Example**: `output/level1_solution.py`
 
 # 5. Contributions
 Maxine Wang:
