@@ -71,57 +71,70 @@ The only criterion for the program to achieve its goal is to make the laser hit 
 # 3. Code Logic
 ## 3.1 Game
 
-This puzzle game is based on block placement and laser beam simulation. Players are given a fixed grid, a laser source, and a set of blocks that can reflect or redirect the beam. The goal is to determine a valid placement of blocks such that the laser hits all target points.
+### Game Class
 
-### How It Works
+The `Game` class is responsible for parsing the `.bff` file input, which defines the Lazor puzzle setup. It extracts the board layout, lazor configuration, goal points, and block inventory.
 
-- A coarse grid represents valid block positions (`'o'`).
-- A set of blocks (types A, B, C) is available to be placed.
-- After placement, a laser is fired and travels based on the properties of blocks in its path.
-- The laser path is traced on a fine meshgrid that helps detect intersections with targets.
+#### Class Purpose
 
-### Block Types
+To preprocess and provide structured data from the puzzle input file for further simulation and solving by other modules.
 
-| Block Type | Behavior                      |
-|------------|-------------------------------|
-| A          | Reflects laser 90°            |
-| B          | Transmits and reflects part   |
-| C          | Fully transmits and redirects |
+#### Class Methods
 
-### Project Structure
+##### `__init__(filename: str)`
 
-- `board.py`: Logic for generating playable boards and meshgrid
-- `lazor_solver.py`: Simulates laser behavior
-- `main.py`: Game entry point
-- `resources/`: Game maps and block settings
+- Loads and cleans the input file by removing comments (`#`) and blank lines.
+- Stores relevant data in a list called `self.raw_data`.
+
+##### `database()`
+
+Parses the cleaned data into structured components:
+
+- **Grid** (`self.grid`)  
+  A 2D list of strings representing the board layout between `'GRID START'` and `'GRID STOP'`.
+
+- **Lazors** (`self.lazor_start`, `self.lazor_path`)  
+  Lazor starting points and direction vectors, defined by lines starting with `L`.
+
+- **Targets** (`self.pointer`)  
+  Points that lazors must pass through, defined by lines starting with `P`.
+
+- **Block Inventory** (`self.blocks`)  
+  A dictionary storing the available number of blocks: `'A'`, `'B'`, and `'C'`.
 
 ## 3.2 Board
 
-The `Board` class is responsible for generating a random, valid configuration of the game grid and converting it into a grid suitable for the laser simulation.
+### Board Class
 
-### Main Functions
+The `Board` class is responsible for preparing playable laser puzzle boards. It supports identifying valid block placement positions, randomly placing blocks, and converting the board to a fine-resolution meshgrid for laser tracing.
 
-#### `get_placeable_positions()`
-Finds all grid positions where blocks can be placed (marked as `'o'`).
+#### Algorithm Steps
 
-#### `place_blocks_randomly(sample_space, block_dict, seed=None)`
-Randomly selects positions and places a specific number of blocks of each type.
+1. **Identify Valid Positions**
+   - The method `get_placeable_positions()` scans the input grid and returns all coordinates marked as `'o'`, which are valid positions for block placement.
 
-#### `create_meshgrid(grid)`
-Converts a coarse grid (i x j) into a fine meshgrid (2i+1 x 2j+1) to allow laser traversal between and through blocks.
+2. **Random Block Placement**
+   - The method `place_blocks_randomly()` randomly selects positions from the valid space and places blocks according to the given dictionary, such as `{'A': 2, 'B': 1, 'C': 1}`.
+   - Blocks are placed in a fixed order (`C`, `A`, then `B`) to ensure consistent placement logic.
+   - A deep copy of the original grid is used to avoid mutation.
 
-#### `generate_full_board(seed=None)`
-High-level wrapper that performs the full process:
-1. Samples valid block positions
-2. Randomly places blocks
-3. Builds the meshgrid
+3. **Grid to Meshgrid Conversion**
+   - The method `create_meshgrid()` expands the original grid to a higher-resolution mesh (size \(2i+1 \times 2j+1\)) that supports laser beam tracing between cells.
+   - Blocks are positioned in the mesh such that paths can be traced around and through them.
+
+4. **One-click Board Generation**
+   - `generate_full_board()` combines all above steps to return both a new playable board with blocks placed and its corresponding meshgrid.
+
+#### Output
+
+The final output includes:
+- A board with blocks placed
+- A meshgrid that can be used for laser path simulation
 
 ## 3.3 Block
 The Block section of the code is designed to handle the properties of different types of blocks in the laser maze. Each block has two fundamental attributes: reflect and transmit. The types of blocks include reflective blocks (A), opaque blocks (B), refractive blocks (C), and empty spaces (o). The main function of the Block module is to determine whether a block (or an empty space) at a given position can reflect or transmit a laser beam.
 Ultimately, this module answers a key question:
 At a specific position in the meshgrid, does the laser encounter something that is reflective or transparent? The output is a pair of Boolean values: reflect and transmit.
-
-
 
 ## 3.4 Laser
 The LaserBeam class is the core simulation engine in this project, responsible for modeling how lasers propagate through the board and interact with different block types — reflective (A), opaque (B), and refractive (C).
@@ -141,8 +154,6 @@ Key Method：
 *	Starts from each origin;
 *	Iteratively updates directions and intersections;
 *	Aggregates all positions for validation.
-
-
 
 ## 3.5 Outputter
 
