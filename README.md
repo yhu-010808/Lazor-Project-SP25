@@ -134,16 +134,9 @@ The `generate_solution_output.py` provides functions to display and save Lazor g
 
 Prints the game grid to the console in a formatted layout.
 
-- **Parameters**:
-  - `grid`: A 2D list of strings representing the Lazor game board.
-
 #### `save_solution_to_file(grid: List[List[str]], filename: str = "output.txt") -> None`
 
 Saves the formatted grid to a text file for documentation or analysis.
-
-- **Parameters**:
-  - `grid`: A 2D list of strings representing the Lazor game board.
-  - `filename`: Name of the output file (default: `"output.txt"`)
 
 ## 3.6 Solution
 The `generate_solution.py` implements a random trial-based algorithm to find a valid solution to a Lazor puzzle.
@@ -167,7 +160,7 @@ Attempts to generate a valid solution grid by randomly placing blocks and simula
 - **Example**: `mad_1.bff`
 
 ### Output Files
-- **File Extension**: `.bff` (or other formats like `.txt`)
+- **File Extension**: `.bff`
 - **Purpose**: Store solved configurations
 - **Contains**:
   - Final block placements
@@ -181,4 +174,5 @@ Attempts to generate a valid solution grid by randomly placing blocks and simula
 
 # 5. Contributions
 Maxine Wang:
+
 Yinan Hu:
