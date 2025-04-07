@@ -131,7 +131,7 @@ At each step, the laser checks surrounding cells. When it encounters:
 *	a refractive block (C), it splits into two beams — one continues and one reflects.
 The class tracks all the paths and intersection points, determining whether the laser hits all required targets. The logic is modularized using helper methods for each block behavior and a boundary checker to ensure a valid simulation.
 Key Method：
-1.	__init__：Initializes the laser's starting points and directions.
+1.	__init _: Initializes the laser's starting points and directions.
 2.	is_valid_position： Static method to check if a coordinate is within the board boundary.
 3.	laser_strikes： Core method for handling laser interactions with blocks.
 *	Detects nearby blocks;
