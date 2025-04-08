@@ -658,7 +658,7 @@ class MyTest(unittest.TestCase):
 
 if __name__ == '__main__':
 
-  solution_generator('mad_4.bff', 500000)
+  solution_generator('yarn_5.bff', 500000)
 
 
 
