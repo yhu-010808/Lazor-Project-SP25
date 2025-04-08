@@ -236,13 +236,13 @@ This project uses a series of .bff (Block File Format) files to define the game 
 - **Purpose**: Store solved configurations
 - **Contains**:
   - Final block placements
-- **Example**: `solution.bff`
+- **Example**: `solution yarn_5.bff`
 
 ## 4.2 .py Files (Source Code)
 
 ### Core Program Files
 - **File Extension**: `.py`
-- **Example**: `Lazor_Final.py`
+- **Example**: `LAZOR_FINAL.py`
 
 
 # 5. Authors
